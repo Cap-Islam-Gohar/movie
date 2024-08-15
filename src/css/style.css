@@ -1,0 +1,300 @@
+/*Scroll*/
+/**===============================**/
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+::selection{
+    background-color: #fff;
+    color: #0D0D0D;
+}
+
+body{
+    background-color: #0D0D0D;
+    font-family: Segoe UI Light;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#slide{
+    width: 250px;
+    margin-left: -250px;
+    background-color: #000;
+    padding: 0 30px;
+}
+
+header {
+    z-index: 9999;
+}
+
+#nav{
+    width: 60px;
+    background-color: transparent;
+    color: #f9f6f6;
+}
+
+.open-icon, .close-icon{
+    cursor: pointer;
+}
+
+#menu{
+    overflow: hidden;
+    height: 300px;
+    color: #f9f6f6 !important;
+}
+
+#menu div {
+    padding-top: 250px;
+    opacity: 0;
+}
+
+#menu a:hover {
+    color: #ff655c !important;
+}
+
+#slide p {
+    color: rgb(153, 153, 153)!important;
+}
+
+#search.form-control::placeholder
+{
+    color: #777;
+}
+
+.item{
+    overflow: hidden;
+    position: relative;
+    width: 90%;  
+    margin: auto; 
+}
+
+.poster{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.poster img {
+    transition: all 1s;    
+}
+
+.animateImage{
+    transform: rotate(5Deg) scale(1.25);
+    filter: blur(3px) opacity(60%); 
+}
+
+.overlay{
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    color: #f9f6f6;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.title{
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    user-select: text;  
+    transition: all 0.5s ease-in-out; 
+}
+
+
+.desc{
+    color: #EDEDED;
+    user-select: text;
+    transition: all 0.5s ease-in-out;
+}
+.date{
+    font-style: italic;
+    transition: all 0.5s ease-in-out;
+}
+
+.data>span {
+    font-style: normal !important;
+}
+
+.rate{
+    color: rgb(255, 193, 7);
+    transition: all 0.5s ease-in-out;
+}
+
+.vote{
+    border: 2px solid green;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    transition: all 0.5s ease-in-out;
+}
+
+#loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:9999999;
+}
+
+#toTopBtn{
+    width:40px; 
+    height:40px;
+    transition: all 1 ease-in-out;
+}
+
+#contact .form-control{
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: 6px 12px;
+    color: #fff;
+    background-color: transparent;
+    border-bottom: solid 1px #CED4DA;
+    margin-top: 1.5rem;
+}
+
+#contact .form-control::placeholder{
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    color: #666;
+}
+
+#contact .form-btn{   
+    display: inline-block;
+    font-family: var(--bs-btn-font-family);
+    font-size: var(--bs-btn-font-size);
+    font-weight: var(--bs-btn-font-weight);
+    line-height: var(--bs-btn-line-height);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: var(--bs-btn-border-width) solid #000;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    border-radius: 5px;
+    margin-top: 18px;
+    margin-bottom: 16px;
+    color: #fff;
+    background-color: #000;
+    padding: 10px 25px;
+}
+
+#contact .form-btn:disabled {
+    color: #fff;
+    border-color: rgb(214, 46, 51);
+    background-color: rgb(214, 46, 51);
+    pointer-events: none;
+    cursor: not-allowed;
+    border: none;
+    opacity: 1;
+}
+
+#contact .form-btn:hover {
+    color: #000!important;
+    background-color: #F8F6F6;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+
+.showPassBtn{
+    position: absolute;
+    right: 10px;
+    bottom: -20px;
+    color: #fff;
+    width: 20px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5 ease-in-out;
+}
+
+.error{
+    color: rgb(214, 46, 51);
+    position: absolute;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+
+
+@media (min-width: 768px){
+
+    #nav {
+        background-color: #f9f6f6;
+        color: #0D0D0D;
+    }
+
+    .container{
+        padding-left: 3rem;
+    }
+
+    #search{
+        max-width: 50%;
+    }
+
+    .title{
+        font-size: 35px;
+    }
+}
+
+@media(min-width: 992px){  
+    
+    .container{
+        padding-left: 3.5rem;
+    }
+
+    .title{
+        font-size: 22px;
+    }
+
+    .desc {
+        font-size: 14px;
+    }
+
+    .date {
+        margin-bottom: 0;
+    }
+}

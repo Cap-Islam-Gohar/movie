@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/png" href="images/logo.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1, maximum-scale=1" />
+	<title>Movie App</title>
+</head>
+
+<body>
+
+	<header class="position-fixed d-flex flex-row-reverse vh-100 top-0">
+		
+		<nav id="nav" class="d-flex flex-column justify-content-center justify-content-md-between align-items-center h-100">
+			<div id="logo" class="d-none d-md-block">
+				<img class="img-fluid my-4" style="height: 48px;"/>
+			</div>
+			<div id="slideToggle" class="fs-3 user-select-none" aria-controls="slideToggle">
+				<i class="open-icon fa-solid fa-align-justify"></i>
+				<i class="close-icon d-none fa-solid fa-close"></i>
+			</div>
+			<div class="mb-5 d-none d-md-block">
+				<div><i class="fa-solid fa-globe"></i></div>
+				<div><i class="fa-solid fa-share-nodes"></i></div>
+			</div>
+		</nav>
+		
+		<aside id="slide" class="bg-black text-white d-flex flex-column justify-content-between">
+			<div id="menu" class="d-flex flex-column">
+				<div><a href="#" data-api="getNowPlaying">Now playing</a></div>
+				<div><a href="#" data-api="getPopular">Popular</a></div>
+				<div><a href="#" data-api="getTopRated">Top Rated</a></div>
+				<div><a href="#" data-api="getTrending">Trending</a></div>
+				<div><a href="#" data-api="getUpcoming">Upcoming</a></div>
+				<div><a href="#contact">Contact Us</a></div>
+			</div>
+
+			<div class="pb-4">
+				<div class="d-flex gap-3" style="font-size: 14px;">
+					<div><a href="#"><i class="fa-brands fa-facebook-f"></i></a></div>
+					<div><a href="#"><i class="fa-brands fa-twitter"></i></a></div>
+					<div><a href="#"><i class="fa-solid fa-globe"></i></a></div>
+					<div><a href="https://github.com/Cap-Islam-Gohar"><i class="fa-brands fa-github"></i></a></div>
+				</div>
+				<p class="pt-3">Copyright © 2022 All Rights Reserved. <br>Created by <a href="https://github.com/Cap-Islam-Gohar" class="link-danger fw-bold" target="_blank">Islam Gohar</a></p>
+			</div>
+		</aside>
+			
+	</header>
+	
+
+	<main>
+		<section class="container py-5">
+			<div>
+				<label for="search" aria-readonly="true" class="visually-hidden">Search</label>
+				<input type="search" id="search" placeholder="Search" class="form-control w-75 mx-auto bg-transparent rounded-5 text-white shadow-none px-3 border-white border-2">
+			</div>
+
+			<div id="items" class="row g-4 text-white mt-3"></div>
+		</section>
+
+		<section id="contact" class="container py-5 text-white">
+			<h2 class="fs-2">Contact Us</h2>
+			<div class="row mt-3">
+
+				<form class="row">
+			
+					<div class="col-md-6">
+						<input type="text" id="name" class="form-control" placeholder="Enter Your Name" maxlength="40" required autocomplete="name"/>
+						<span class="error animate__fadeOutUp animate__animated"></span>
+					</div>
+					<div class="col-md-6">
+						<input type="email" id="email" class="form-control" placeholder="Enter Your Email" required autocomplete="email" />
+						<span class="error animate__fadeOutUp animate__animated"></span>
+					</div>
+					<div class="col-md-6">
+						<input type="number" id="phone" class="form-control" placeholder="Enter Your Phone" required/>
+						<span class="error animate__fadeOutUp animate__animated"></span>
+					</div>
+					<div class="col-md-6">
+						<input type="number" id="age" class="form-control" placeholder="Enter Your Age" required/>
+						<span class="error animate__fadeOutUp animate__animated"></span>
+					</div>
+					<div class="col-md-6 position-relative">
+						<input type="password" id="password" class="password form-control" placeholder="Enter Your Password" required />
+						<span class="error animate__fadeOutUp animate__animated"></span>
+						<i class="showPassBtn fa-solid fa-eye"></i>
+					</div>
+					<div class="col-md-6 position-relative">
+						<input type="password" id="passwordConfirmation" class="password form-control" placeholder="ReEnter Password"/>
+						<span class="error animate__fadeOutUp animate__animated"></span>
+						<i class="showPassBtn fa-solid fa-eye"></i>
+					</div>
+					<div class="col-md-12 mt-4">
+						<button type="submit" class="form-btn animate__animated">Submit</button>
+					</div>
+
+				</form>
+			
+			</div>
+			
+		</section>
+		
+	</main>
+
+	<div id="toTopBtn" class="d-flex justify-content-center align-items-center position-fixed bottom-0 end-0 rounded-circle z-3 me-4 mb-4 bg-black text-white invisible">
+		<i class="fa-solid fa-arrow-up-long"></i>
+	</div>
+
+	<!-- <div id="loader" class="position-fixed top-0 bottom-0 start-0 end-0 bg-black">
+		<div class="spinner-border text-light" role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div> -->
+
+
+	
+
+	<script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
