@@ -8,9 +8,8 @@ import '../css/style.css';
 import '../css/media.css';
 import theMovieDb from './theMovieDb.js';
 import cache from './cache.js';
-import $, { event } from 'jquery';
+import $ from 'jquery';
 import logo from 'images/logo.png';
-import defaultMovieImage from 'images/default-movie.jpg';
 import contactForm from './contactForm.js';
 import passwordshow from './passwordshow.js';
 
@@ -25,31 +24,28 @@ $(() => {
 	//slide nav
 	$('#slideToggle').on('click', () => {
 		let slide = $('#slide');
-		
+		let links = $('#menu div');		
 		if(slide.offset().left < 0){
-			slide.animate({marginLeft: 0}, 500);
-			
-			$('#menu div').each((index, item) => {
+			let freeSpace = $(window).innerHeight() - $('.social').innerHeight();
+			let paddingTop = freeSpace < 300 ? freeSpace / (links.length * 34) : 25; 
+			slide.animate({marginLeft: 0}, 500);			
+			links.each((index, item) => {
 				$(item).animate({
-					paddingTop: "25px",
+					paddingTop: `${paddingTop}px`,
 					opacity: 1,
 				}, 1000)
 			});
-			
 		}else{
-			$('#menu div').each((index, item) => {
+			links.each((index, item) => {
 				$(item).animate({
 					paddingTop: "250px",
 					opacity: 0,
 				}, 1000)
 			});
 			slide.animate({marginLeft: -250}, 500);
-			
 		}
-
 		$(".open-icon").toggleClass('d-none');
 		$(".close-icon").toggleClass('d-none');
-		
 	});
 
 	$('#menu a').on('click', (e) => {
@@ -72,19 +68,23 @@ $(() => {
 
 
 	//search input
-	$('#search').on('change', (e) => {
-		let query = e.target.value;
-		if(query !== ""){
-			theMovieDb.movies.doSearch(query, {page: 1})
-			.then((data) => {
-				theMovieDb.display(data.results)
-			});
-		}else{
-			theMovieDb.movies.getNowPlaying({page: 1})
-			.then((data) => {
-				theMovieDb.display(data.results)
-			})
-		}
+	let searchtimer;
+	$('#search').on('input', (e) => {
+		clearTimeout(searchtimer);
+		searchtimer = setTimeout(() => {
+			let query = e.target.value;
+			if(query !== ""){
+				theMovieDb.movies.doSearch(query, {page: 1})
+				.then((data) => {
+					theMovieDb.display(data.results)
+				});
+			}else{
+				theMovieDb.movies.getNowPlaying({page: 1})
+				.then((data) => {
+					theMovieDb.display(data.results)
+				});
+			}
+		}, 1000);
 	});
 	
 

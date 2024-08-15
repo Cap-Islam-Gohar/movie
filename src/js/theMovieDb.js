@@ -1,5 +1,6 @@
 import $, { error } from 'jquery';
 import cache from './cache.js';
+import defaultMovieImage from 'images/default-movie.jpg';
 
 const theMovieDb = {};
 

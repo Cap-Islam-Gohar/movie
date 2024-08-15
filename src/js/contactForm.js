@@ -13,7 +13,7 @@ export default () => {
             ],
             email: [
                 { condition: (val) => val.startsWith(" ") || !val, message: 'Email is required.'},
-                { condition: (val) => !/^[a-zA-Z0-9]+@[a-z0-9]+\\.[a-z]{3}$/.test(val), message: 'Invalid Email , try example@domain.com.' }
+                { condition: (val) => !/^[a-zA-Z0-9]+@[a-z0-9]+\.[a-z]{3}$/.test(val), message: 'Invalid Email , try example@domain.com.' }
             ],
             phone: [
                 { condition: (val) => val.startsWith(" ") || !val, message: 'Phone Number is required.'},
@@ -57,11 +57,12 @@ export default () => {
 
     
     const formSubmitBtn = $('#contact button')
-    formSubmitBtn.on('click mouseover Keydown', (e) => {
+    formSubmitBtn.on('click Keydown', (e) => {
         e.preventDefault();
+        let target = $(e.target);
 
         if(Object.keys(form.errors).length > 0){
-            $(e.target).css("marginLeft") == "250px" ? $(e.target).css({ "marginLeft": "0px" }) : $(e.target).css({ "marginLeft": "250px" });
+            target.css("marginLeft") == "250px" ? target.css({ "marginLeft": "0px" }) : target.css({ "marginLeft": "250px" });
         }
 
         if(e.type === 'click'){
@@ -114,7 +115,6 @@ export default () => {
         errorEl.removeClass('animate__animated animate__flipInX');
         errorEl.addClass('animate__animated animate__fadeOutUp');
         
-        formSubmitBtn.removeAttr('disabled');
         formSubmitBtn.removeClass('animate__shakeX bg-danger buttonFormActive');
         formSubmitBtn.css({ "marginLeft": "0px" });
         formSubmitBtn.removeClass('animate__shakeX bg-danger buttonFormActive');
@@ -126,7 +126,6 @@ export default () => {
         errorEl.removeClass('animate__animated animate__fadeOutUp');
         errorEl.addClass('animate__animated animate__flipInX');
 
-        formSubmitBtn.attr('disabled', true);
         formSubmitBtn.addClass('animate__shakeX bg-danger buttonFormActive');
         formSubmitBtn.addClass('animate__shakeX bg-danger buttonFormActive');
         formSubmitBtn.css({ 'cursor': 'default', 'userSelect': 'none' });        
