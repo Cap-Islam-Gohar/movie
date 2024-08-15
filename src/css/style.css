@@ -115,31 +115,29 @@ header {
 }
 
 .title{
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 700;
     text-align: center;
     user-select: text;  
     transition: all 0.5s ease-in-out; 
 }
 
-
 .desc{
     color: #EDEDED;
     user-select: text;
     transition: all 0.5s ease-in-out;
+    font-size: 14px;
+    /* margin-bottom: 8px; */
 }
 .date{
-    font-style: italic;
     transition: all 0.5s ease-in-out;
-}
-
-.data>span {
-    font-style: normal !important;
+    /* margin: 0; */
 }
 
 .rate{
     color: rgb(255, 193, 7);
     transition: all 0.5s ease-in-out;
+    /* margin: 10px 0; */
 }
 
 .vote{
@@ -152,6 +150,7 @@ header {
     height: 40px;
     font-size: 20px;
     transition: all 0.5s ease-in-out;
+    /* margin: 8px 0px 8px; */
 }
 
 #loader{
@@ -258,43 +257,3 @@ input[type=number] {
 }
 
 
-
-
-@media (min-width: 768px){
-
-    #nav {
-        background-color: #f9f6f6;
-        color: #0D0D0D;
-    }
-
-    .container{
-        padding-left: 3rem;
-    }
-
-    #search{
-        max-width: 50%;
-    }
-
-    .title{
-        font-size: 35px;
-    }
-}
-
-@media(min-width: 992px){  
-    
-    .container{
-        padding-left: 3.5rem;
-    }
-
-    .title{
-        font-size: 22px;
-    }
-
-    .desc {
-        font-size: 14px;
-    }
-
-    .date {
-        margin-bottom: 0;
-    }
-}

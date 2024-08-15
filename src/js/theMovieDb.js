@@ -1,3 +1,4 @@
+import $, { error } from 'jquery';
 import cache from './cache.js';
 
 const theMovieDb = {};
@@ -35,7 +36,7 @@ theMovieDb.common = {
 
         let data = cache.get(url);
         if(data) {
-            console.log('form cache')
+            // console.log('form cache')
             return Promise.resolve(data);
         }else{
             return await fetch(url)
@@ -43,7 +44,7 @@ theMovieDb.common = {
                 if (!response.ok) {
                     throw new Error(`Response status: ${response.status}`);
                 }
-                console.log('form request')
+                // console.log('form request')
                 let data = await response.json();
                 cache.set(url, data);
                 return data;
@@ -109,6 +110,107 @@ theMovieDb.movies = {
         
         
     },
+}
+
+// display result
+theMovieDb.display = (data) => {
+    let container = $('#items')
+    let html = "";
+                
+    $.each(data, (index, movie) => {
+        movie = theMovieDb.validateResponseData(movie);
+        html += `
+        <div class="col-sm-12 col-md-6 col-lg-4 animate__animated animate__fadeIn">
+            <div class="item animate__fadeIn">
+                <div class="poster animate__fadeIn">
+                    <img class="img-fluid" src="${movie.image}"/>
+                </div>
+                <div class="overlay">
+                    <h1 class="title animate__animated animate__slideOutLeft">${movie.title}</h1>
+                    <p class="desc animate__animated animate__slideOutLeft">${movie.overview}</p>
+                    <p class="date animate__animated animate__slideOutLeft">
+                        <span>Release Date<span> : ${movie.release_date}</span></span>
+                    </p>
+                    <p class="rate animate__animated">
+                        ${movie.rate}
+                    </p>
+                    <p class="vote animate__animated">${movie.vote_average}</p>
+                </div>
+            </div>
+        </div>`
+    });
+
+    container.html(html);
+
+    $('#items .row div').addClass("animate__fadeIn");
+
+    $('.item').on('mouseenter mouseleave', (e) => {
+        let target  = $(e.delegateTarget);
+        let overlay = target.find('.overlay');
+        let title = overlay.find('.title');
+        let desc = overlay.find('.desc');
+        let date = overlay.find('.date');
+        let rate = overlay.find('.rate'); 
+        
+        if(e.type === 'mouseenter'){	
+            overlay.css({"opacity":"1","visibility":"visible"});		
+            title.removeClass('animate__slideOutLeft');
+            title.addClass('animate__fadeInDown animate__delay-0s');
+            desc.removeClass('animate__slideOutLeft');
+            desc.addClass('animate__flipInX animate__delay-0s');
+            date.removeClass('animate__slideOutLeft');
+            date.addClass('animate__fadeInUp animate__delay-0s');
+            rate.removeClass('animate__slideOutLeft');
+            rate.addClass('animate__fadeInUp animate__delay-0s');
+            target.find('.poster img').addClass("animateImage");
+            
+        }else if (e.type === 'mouseleave'){
+            title.addClass('animate__slideOutLeft');
+            title.removeClass('animate__fadeInDown animate__delay-0s');
+            desc.addClass('animate__slideOutLeft');
+            desc.removeClass('animate__flipInX animate__delay-0s');
+            date.addClass('animate__slideOutLeft');
+            date.removeClass('animate__fadeInUp animate__delay-0s');
+            rate.addClass('animate__slideOutLeft');
+            rate.removeClass('animate__fadeInUp animate__delay-0s');
+            target.find('.poster img').removeClass("animateImage");
+            overlay.css({"opacity":"0","visibility":"hidden"});
+        }
+    });
+}
+
+theMovieDb.validateResponseData = (obj) => {
+    return {
+        title: obj?.title ?? obj?.name ?? 'Title',
+        overview: obj.overview.length > 300 ? obj.overview.slice(0,250)+ '...' : obj.overview,
+        release_date: obj?.release_date ?? obj?.first_air_date ?? 'Release Date UnKnown',
+        vote_average: obj.vote_average.toFixed(1),
+        get image(){
+            let image = obj?.poster_path ?? obj?.backdrop_path;
+            return image = image ? theMovieDb.config.images_uri + image : defaultMovieImage;
+        },
+        get rate(){
+            let stars = "";
+            let value = Math.floor(obj.vote_average);
+            let isOdd = value % 2;
+            let solid = isOdd ? (value-1) / 2: value /2;
+    
+            for (let i = 0; i < 5; i++) {
+                let star = '<i class="fa-regular fa-star fs-6"></i>';
+                if(value === 0 ){
+                    star = `<i class="fa-solid fa-star text-muted fs-6"></i>`;
+                }
+                if(i < solid){
+                    star = '<i class="fa-solid fa-star fs-6"></i>';
+                }
+                if(i == solid && isOdd){
+                    star = '<i class="fa-regular fa-star-half-stroke fs-6"></i>';
+                }
+                stars += star;
+            }
+            return stars;
+        }
+    }
 }
 
 
